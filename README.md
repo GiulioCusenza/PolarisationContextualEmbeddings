@@ -7,6 +7,8 @@
 ## Info
 This repository contains the code framework used in the afore-mentioned study to measure political polarisation in parliamentary debates from the United Kingdom and Italy.
 
+The file [settings.py](./Code/settings.py) contains some hyperparameters such as political parties IDs for ParlaMint, topical words, directory paths, etc. To choose whether to run the code on the British or Italian data, edit the `DATASET` constant.
+
 The folder [Code/](./Code/) contains the scripts used the experiment. The main pipeline is constituted by:
 1. [extract_text.py](./Code/extract_text.py)
 2. [embed.py](./Code/embed.py)
