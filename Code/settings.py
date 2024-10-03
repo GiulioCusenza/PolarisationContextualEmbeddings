@@ -5,6 +5,7 @@ PARLAMINT_DIR = f"./data/{DATASET}/ParlaMint/"
 PEOPLE_FILE = PARLAMINT_DIR + f"ParlaMint-{DATASET}-listPerson.xml"
 UTTERANCES_DIR = f"./data/{DATASET}/utterances/"
 EMBEDDINGS_DIR = f"./data/{DATASET}/embeddings/"
+POLMAT_DIR = f"./data/{DATASET}/polarity_matrices/"
 
 if DATASET == "GB":
     MODEL = "bert-base-uncased"
