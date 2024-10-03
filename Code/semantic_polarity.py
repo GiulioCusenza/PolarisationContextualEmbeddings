@@ -5,7 +5,7 @@ from numpy.linalg import norm
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-import pickle as pkl
+import os
 
 def cos(x, y):
     return np.dot(x, y) / (norm(x)*norm(y))
@@ -47,29 +47,26 @@ def load_word_data(dir):
         group2embeddings[g].append(e)
     return group2embeddings, len(embeddings)
 
-def save_polarity_matrices(file):
-    matrices = {t: {y: None for y in YEARS} for t in TOPICS}
-    for topic in TOPICS:
-        for year in YEARS:
-            try:
-                dir = EMBEDDINGS_DIR+year+"/"+topic
-                group2embeddings, n_embeddings = load_word_data(dir)
-                print(f"{dir}\t{n_embeddings}")
-                polarity_mat = polarity_matrix(list(group2embeddings.values()))
-                labels = list(group2embeddings.keys())
-                polarity_df = pd.DataFrame(polarity_mat, columns=labels, index=labels)
-                matrices[topic][year] = polarity_df
-            except Exception as e:
-                print(e)
-        pkl.dump(matrices, open(file, "wb"))
+def save_polarity_matrices():
+    for year in YEARS:
+        out_dir = POLMAT_DIR+"/"+year+"/"
+        os.makedirs(out_dir, exist_ok=True)
+        for topic in TOPICS:
+            in_dir = EMBEDDINGS_DIR+year+"/"+topic
+            group2embeddings, n_embeddings = load_word_data(in_dir)
+            print(f"{in_dir}\t{n_embeddings}")
+            polarity_mat = polarity_matrix(list(group2embeddings.values()))
+            labels = list(group2embeddings.keys())
+            polarity_df = pd.DataFrame(polarity_mat, columns=labels, index=labels)
+            file = out_dir+topic+".csv"
+            polarity_df.to_csv(file)
 
-def plot_polarity_matrices(file, n_cols=4):
-    matrices = pkl.load(open(file, "rb"))
+def plot_polarity_matrices(n_cols=4):
     for topic in TOPICS:
         fig, axs = plt.subplots(nrows=(len(YEARS) // n_cols) + 1, ncols=n_cols)
         for i, year in enumerate(YEARS):
             ax = axs[i // n_cols][i % n_cols]
-            polarity_matrix = matrices[topic][year]
+            polarity_matrix = pd.read_csv(f"{POLMAT_DIR}/{year}/{topic}.csv", index_col=0)
             print(topic, year)
             print(polarity_matrix)
             mask = np.triu(np.ones_like(polarity_matrix, dtype=bool), k=1)
@@ -92,6 +89,5 @@ def plot_polarity_matrices(file, n_cols=4):
 
 
 if __name__ == "__main__":
-    file = "./polarity_matrices.pkl"
-    # save_polarity_matrices(file)
-    plot_polarity_matrices(file)
+    save_polarity_matrices()
+    # plot_polarity_matrices()
