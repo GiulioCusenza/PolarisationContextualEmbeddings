@@ -2,7 +2,7 @@ from settings import *
 
 import torch
 from collections import OrderedDict
-import os, shutil, csv
+import os, csv
 from tqdm import tqdm
 from beepy import beep
 
@@ -86,15 +86,12 @@ def get_embeddings(sentences):
 
 
 if __name__ == "__main__":
-    INPUT_DIR = "./data/"
-    OUTPUT_DIR = "./embeddings/"
-    shutil.rmtree(OUTPUT_DIR)
     for year in YEARS:
         for topic in TOPICS:
             print(year, topic)
-            in_file = INPUT_DIR+year+"/"+topic+".tsv"
-            out_dir = OUTPUT_DIR+year+"/"+topic+"/"
-            os.makedirs(out_dir)
+            in_file = UTTERANCES_DIR+year+"/"+topic+".tsv"
+            out_dir = EMBEDDINGS_DIR+year+"/"+topic+"/"
+            os.makedirs(out_dir, exist_ok=True)
             with open(in_file, "r", encoding="utf-8") as data:
                 # get embeddings
                 sentences = list()
