@@ -47,6 +47,7 @@ def extract(file, topics, affiliations):
 
 
 if __name__ == "__main__":
+    print("Running on", DATASET)
     affiliations = load_affiliations(PEOPLE_FILE)
     shutil.rmtree(UTTERANCES_DIR)
     for year in YEARS:
@@ -55,7 +56,7 @@ if __name__ == "__main__":
         os.makedirs(dir)
         topic2entries = {t: list() for t in TOPICS}
         for file in os.listdir(os.fsencode(PARLAMINT_DIR+year)):
-            if "commons" in os.fsdecode(file):
+            if DATASET == "IT" or (DATASET == "GB" and "commons" in os.fsdecode(file)):
                 for entry in extract(PARLAMINT_DIR+year+"/"+os.fsdecode(file), TOPICS, affiliations):
                     topic2entries[entry[1]].append(entry)
         for topic, entries in topic2entries.items():
