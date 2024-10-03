@@ -1,8 +1,8 @@
 # Polarisation analysis through contextual embeddings
 
-**Paper:** _On the difficulty of using Contextual Word Embeddings to Measure Political Polarisation in Parliamentary Speech_ ([pdf](paper.pdf))
-**Author:** Giulio Cusenza ([email](mailto:giuliocusenza@gmail.com))
-**Supervisor:** Çağrı Çöltekin
+**Paper:** _On the difficulty of using Contextual Word Embeddings to Measure Political Polarisation in Parliamentary Speech_ ([pdf](paper.pdf))  
+**Author:** Giulio Cusenza ([email](mailto:giuliocusenza@gmail.com))  
+**Supervisor:** Çağrı Çöltekin  
 
 ## Info
 This repository contains the code framework used in the afore-mentioned study to measure political polarisation in parliamentary debates from the United Kingdom and Italy.
