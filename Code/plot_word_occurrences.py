@@ -7,7 +7,7 @@ def count_occurrences(topic):
     occurrences = list() # n occurrences each year
     for year in YEARS:
         count = 0
-        for entry in open(f"./data/{year}/{topic}.tsv", encoding="utf-8"):
+        for entry in open(f"{UTTERANCES_DIR}/{year}/{topic}.tsv", encoding="utf-8"):
             text = entry.split("\t")[3]
             for word in text.split():
                 if topic in word:
