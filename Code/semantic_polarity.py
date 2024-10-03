@@ -5,7 +5,7 @@ from numpy.linalg import norm
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-import os
+import os, math
 
 def cos(x, y):
     return np.dot(x, y) / (norm(x)*norm(y))
@@ -63,7 +63,7 @@ def save_polarity_matrices():
 
 def plot_polarity_matrices(n_cols=4):
     for topic in TOPICS:
-        fig, axs = plt.subplots(nrows=(len(YEARS) // n_cols) + 1, ncols=n_cols)
+        fig, axs = plt.subplots(nrows=math.ceil(len(YEARS) / n_cols), ncols=n_cols)
         for i, year in enumerate(YEARS):
             ax = axs[i // n_cols][i % n_cols]
             polarity_matrix = pd.read_csv(f"{POLMAT_DIR}/{year}/{topic}.csv", index_col=0)
@@ -89,5 +89,5 @@ def plot_polarity_matrices(n_cols=4):
 
 
 if __name__ == "__main__":
-    save_polarity_matrices()
-    # plot_polarity_matrices()
+    # save_polarity_matrices()
+    plot_polarity_matrices()
