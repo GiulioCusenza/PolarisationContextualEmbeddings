@@ -1,6 +1,6 @@
 # Polarisation analysis through contextual embeddings
 
-**Paper:** _On the difficulty of using Contextual Word Embeddings to Measure Political Polarisation in Parliamentary Speech_ ([pdf](G.%20Cusenza,%20On%20the%20difficulty%20of%20using%20Contextual%20Word%20Embeddings%20to%20Measure%20Political%20Polarisation%20in%20Parliamentary%20Speech.pdf.pdf))  
+**Paper:** _On the difficulty of using Contextual Word Embeddings to Measure Political Polarisation in Parliamentary Speech_ ([pdf](/G.%20Cusenza%2C%20On%20the%20difficulty%20of%20using%20Contextual%20Word%20Embeddings%20to%20Measure%20Political%20Polarisation%20in%20Parliamentary%20Speech.pdf))  
 **Author:** Giulio Cusenza ([email](mailto:giuliocusenza@gmail.com))  
 **Supervisor:** Çağrı Çöltekin  
 
@@ -20,3 +20,4 @@ The folder [Code/data/](./Code/data/) also contains the intermediate outputs of 
 - extracted utterances including selected topical words from major parties.
 - BERT-derived contextual embeddings of these topical words.
 - semantic polarity matrices described in the study.
+
